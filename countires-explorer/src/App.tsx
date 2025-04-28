@@ -1,8 +1,8 @@
-import Greeting from "./components/Greeting";
+import Countries from "./pages/Countries";
 
 const App = () => {
   return (
-    <Greeting name="Dev" />
+    <Countries />
   );
 }
 
