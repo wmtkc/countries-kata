@@ -1,5 +1,9 @@
-export default function App() {
+import Greeting from "./components/Greeting";
+
+const App = () => {
   return (
-    <h1 style={{ textAlign: 'center' }}>Dev goes here</h1>
+    <Greeting name="Dev" />
   );
 }
+
+export default App
