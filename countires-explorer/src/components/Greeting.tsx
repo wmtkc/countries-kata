@@ -10,7 +10,7 @@ const Greeting = ({ name }: GreetingProps) => {
     return (
         <>
             <h1>Hello, { name ?? "World"}!</h1>
-            {/* <h2>First Country: {countries[0].name}</h2> */}
+            <h2>First Country: {countries.length > 0 && countries[0].commonName}</h2>
         </>
     )
 }
