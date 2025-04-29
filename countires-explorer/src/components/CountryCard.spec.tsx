@@ -12,7 +12,7 @@ const southAfricaCountry: Country = southAfricaData
 
 describe("Country Card", () => {
     it("renders card with all basic info", () => {
-        render(<CountryCard country={botswanaCountry} />)
+        render(<CountryCard country={botswanaCountry} select={() => {}} />)
         expect(screen.getByText(botswanaCountry.flag))
         expect(screen.getByText(botswanaCountry.commonName))
         expect(screen.getByText(botswanaCountry.population.toLocaleString()))
@@ -22,7 +22,7 @@ describe("Country Card", () => {
     })
 
     it("displays multiple capitals where relevant", () => {
-        render(<CountryCard country={southAfricaCountry} />)
+        render(<CountryCard country={southAfricaCountry} select={() => {}} />)
         expect(screen.getByText(southAfricaCountry.flag))
         expect(screen.getByText(southAfricaCountry.commonName))
         expect(screen.getByText(southAfricaCountry.population.toLocaleString()))

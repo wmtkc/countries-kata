@@ -3,11 +3,15 @@ import "../styles/country-card.css"
 
 type CountryCardProps = {
     country: Country
+    select: (country: Country) => void
 }
 
-const CountryCard = ({ country }: CountryCardProps) => { 
+const CountryCard = ({ country, select }: CountryCardProps) => { 
     return (
-        <div className="country-card">
+        <div 
+            className="country-card"
+            onClick={() => select(country)}
+        >
             <div className="flag-emoji">{country.flag}</div>
             <div className="quick-facts">
                 <div className="name">{country.commonName}</div>

@@ -1,0 +1,60 @@
+.detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.detail-modal main {
+    position:fixed;
+    background: white;
+    width: 80%;
+    height: auto;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 2px;
+    filter: drop-shadow(2px 2px 2px gray);
+    font-family: sans-serif;
+}
+
+.detail-modal .flag-emoji {
+    font-size: 7rem;
+    width: 70%;
+}
+
+.detail-modal .name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 70%;
+}
+
+.detail-modal .detail-facts {
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.detail-modal .detail-facts div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}

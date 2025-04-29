@@ -2,15 +2,19 @@ import { useEffect, useState } from "react"
 import { Country } from "../types/Country"
 import CountryCard from "../components/CountryCard"
 import "../styles/country-page.css"
+import DetailModal from "../components/DetailModal"
 
 const PAGE_SIZE = 10
 
 const Countries = () => {
     const [countries, setCountries] = useState<Array<Country>>([])
+    const [selectedCountry, setSelectedCountry] = useState<Country | undefined>(undefined)
     const [currentPage, setCurrentPage] = useState(0)
 
     const pageUp   = () => setCurrentPage(currentPage === 0 ? 0 : currentPage - 1)
     const pageDown = () => setCurrentPage(currentPage * PAGE_SIZE > countries.length ? currentPage : currentPage + 1)
+    
+    const clearCountrySelecton = () => setSelectedCountry(undefined)
 
     const apiDataToCountry = (apiData: any): Country => ({
         borders: apiData.borders,
@@ -49,15 +53,20 @@ const Countries = () => {
     }, [])
 
     return(
-        <div className="country-page">
-            <div className="country-list">
-                {countries.slice(currentPage * 10, (currentPage * 10) + 10).map(country => (<CountryCard country={country} />))}
+        <>
+            <div className="country-page">
+                <div className="country-list">
+                    {countries.slice(currentPage * 10, (currentPage * 10) + 10).map(country => 
+                        (<CountryCard country={country} select={setSelectedCountry} />)
+                    )}
+                </div>
+                <div className="nav-buttons">
+                    <button onClick={pageUp}>PREV</button>
+                    <button onClick={pageDown}>NEXT</button>
+                </div>
             </div>
-            <div className="nav-buttons">
-                <button onClick={pageUp}>PREV</button>
-                <button onClick={pageDown}>NEXT</button>
-            </div>
-        </div>
+            <DetailModal country={selectedCountry} close={clearCountrySelecton} />
+        </>
     )
 }
 

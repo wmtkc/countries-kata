@@ -12,31 +12,23 @@ const southAfricaCountry: Country = southAfricaData
 
 describe("Detail Modal", () => {
     it("renders modal with all available info", () => {
-        render(<DetailModal country={botswanaCountry} />)
+        render(<DetailModal country={botswanaCountry} close={()=> {}}/>)
         expect(screen.getByText(botswanaCountry.flag))
-        expect(screen.getByText(botswanaCountry.commonName))
-        expect(screen.getByText(botswanaCountry.nativeName))
+        expect(screen.getAllByText(botswanaCountry.commonName))
+        expect(screen.getAllByText(botswanaCountry.nativeName))
         expect(screen.getByText(botswanaCountry.population.toLocaleString()))
         expect(screen.getByText(botswanaCountry.region))
         expect(screen.getByText(botswanaCountry.subregion))
-        botswanaCountry.currencies.forEach(currency => {
-            expect(screen.getByText(currency))
-        })
-        botswanaCountry.languages.forEach(language => {
-            expect(screen.getByText(language))
-        })
-        botswanaCountry.timezones.forEach(timezone => {
-            expect(screen.getByText(timezone))
-        })
-        botswanaCountry.borders.forEach(border => {
-            expect(screen.getByText(border))
-        })
+        expect(screen.getByText(botswanaCountry.currencies.map(currencyName => (currencyName)).join(", ")))
+        expect(screen.getByText(botswanaCountry.languages.map(langName => (langName)).join(", ")))
+        expect(screen.getByText(botswanaCountry.timezones.map(timezoneName => (timezoneName)).join(", ")))
+        expect(screen.getByText(botswanaCountry.borders.map(borderName => (borderName)).join(", ")))
         expect(screen.getByText("Capital:"))
         expect(screen.getByText(botswanaCountry.capital[0]))
     })
 
     it("displays multiple capitals where relevant", () => {
-        render(<DetailModal country={southAfricaCountry} />)
+        render(<DetailModal country={southAfricaCountry} close={() => {}} />)
         expect(screen.getByText("Capitals:"))
         expect(screen.getByText(southAfricaCountry.capital.map(capitalName => (capitalName)).join(", ")))
     })
