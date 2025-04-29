@@ -1,6 +1,7 @@
 .country-page {
     display: flex;
     flex-direction: column;
+    font-family: sans-serif;
 }
 
 .country-list {
@@ -8,15 +9,16 @@
     width: 100%;
     justify-content: space-around;
     flex-flow: wrap;
-    font-family: sans-serif;
 }
 
 .nav-buttons {
     display: flex;
     width: 12%;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
     align-self: center;
     justify-content: space-between;
+    line-height: 2rem;
 }
 
 .nav-buttons button {

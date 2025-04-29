@@ -4,15 +4,18 @@ import CountryCard from "../components/CountryCard"
 import "../styles/country-page.css"
 import DetailModal from "../components/DetailModal"
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 18
 
 const Countries = () => {
     const [countries, setCountries] = useState<Array<Country>>([])
     const [selectedCountry, setSelectedCountry] = useState<Country | undefined>(undefined)
     const [currentPage, setCurrentPage] = useState(0)
 
-    const pageUp   = () => setCurrentPage(currentPage === 0 ? 0 : currentPage - 1)
-    const pageDown = () => setCurrentPage(currentPage * PAGE_SIZE > countries.length ? currentPage : currentPage + 1)
+    const canPageUp = () => currentPage > 0
+    const canPageDown = () => (currentPage + 1) * PAGE_SIZE < countries.length
+
+    const pageUp   = () => setCurrentPage(canPageUp() ? currentPage - 1 : 0)
+    const pageDown = () => setCurrentPage(canPageDown() ? currentPage + 1 : currentPage)
     
     const clearCountrySelecton = () => setSelectedCountry(undefined)
 
@@ -52,17 +55,24 @@ const Countries = () => {
         getCountries()
     }, [])
 
+    useEffect(() => {
+        console.log("current page", currentPage)
+        console.log("current page * page size", currentPage * PAGE_SIZE)
+        console.log("countries length", countries.length)
+    }, [currentPage])
+
     return(
         <>
             <div className="country-page">
-                <div className="country-list">
-                    {countries.slice(currentPage * 10, (currentPage * 10) + 10).map(country => 
-                        (<CountryCard country={country} select={setSelectedCountry} />)
-                    )}
-                </div>
                 <div className="nav-buttons">
-                    <button onClick={pageUp}>PREV</button>
-                    <button onClick={pageDown}>NEXT</button>
+                    <button disabled={!canPageUp()} onClick={pageUp}>PREV</button>
+                    {currentPage + 1}
+                    <button disabled={!canPageDown()} onClick={pageDown}>NEXT</button>
+                </div>
+                <div className="country-list">
+                    {countries.slice(currentPage * PAGE_SIZE, (currentPage * PAGE_SIZE) + PAGE_SIZE).map((country, ix) => 
+                        (<CountryCard country={country} select={setSelectedCountry} key={ix} />)
+                    )}
                 </div>
             </div>
             <DetailModal country={selectedCountry} close={clearCountrySelecton} />
