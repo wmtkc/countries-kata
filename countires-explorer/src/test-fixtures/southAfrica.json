@@ -1,0 +1,40 @@
+{
+    "borders": [
+        "BWA",
+        "LSO",
+        "MOZ",
+        "NAM",
+        "SWZ",
+        "ZWE"
+    ],
+    "capital": [
+        "Pretoria",
+        "Bloemfontein",
+        "Cape Town"
+    ],
+    "currencies": [
+        "South African rand"
+    ],
+    "flag": "🇿🇦",
+    "languages": [
+        "Afrikaans",
+        "English",
+        "Southern Ndebele",
+        "Northern Sotho",
+        "Southern Sotho",
+        "Swazi",
+        "Tswana",
+        "Tsonga",
+        "Venda",
+        "Xhosa",
+        "Zulu"
+    ],
+    "commonName": "South Africa",
+    "nativeName": "South Africa",
+    "population": 59308690,
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "timezones": [
+        "UTC+02:00"
+    ]
+}

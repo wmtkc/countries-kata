@@ -1,0 +1,27 @@
+{
+    "borders": [
+        "NAM",
+        "ZAF",
+        "ZMB",
+        "ZWE"
+    ],
+    "capital": [
+        "Gaborone"
+    ],
+    "currencies": [
+        "Botswana pula"
+    ],
+    "flag": "🇧🇼",
+    "languages": [
+        "English",
+        "Tswana"
+    ],
+    "commonName": "Botswana",
+    "nativeName": "Botswana",
+    "population": 2351625,
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "timezones": [
+        "UTC+02:00"
+    ]
+}

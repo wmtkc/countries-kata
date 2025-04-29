@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import Greeting from "../components/Greeting"
-import { Country } from "../types/country"
+import { Country } from "../types/Country"
 
 export const CountriesContext = createContext<Array<Country>>([])
 
@@ -26,7 +26,8 @@ const Countries = () => {
             `?fields=borders,capital,currencies,flag,languages,name,population,region,subregion,timezones`)
         if (response.ok) {
             const data = await response.json()
-            const trimmedCountries = data.map((apiData: any) => apiDataToCountry(apiData))
+            const trimmedCountries: Array<Country> = data.map((apiData: any) => apiDataToCountry(apiData))
+            console.dir(JSON.stringify(trimmedCountries.find(country => country.commonName === "South Africa")))
             setCountries(trimmedCountries)
         } else {
             console.error("Problem occured while fetching countries...", response)
