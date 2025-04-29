@@ -1,0 +1,7 @@
+.country-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-flow: wrap;
+    font-family: sans-serif;
+}

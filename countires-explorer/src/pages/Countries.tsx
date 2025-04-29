@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react"
-import Greeting from "../components/Greeting"
 import { Country } from "../types/Country"
 import CountryCard from "../components/CountryCard"
+import "../styles/country-page.css"
 
 export const CountriesContext = createContext<Array<Country>>([])
 
@@ -28,8 +28,13 @@ const Countries = () => {
         if (response.ok) {
             const data = await response.json()
             const trimmedCountries: Array<Country> = data.map((apiData: any) => apiDataToCountry(apiData))
-            console.dir(JSON.stringify(trimmedCountries.find(country => country.commonName === "South Africa")))
-            setCountries(trimmedCountries)
+            const sortedTrimmedCountres = trimmedCountries.sort(
+                (countryA, countryB) => 
+                    (countryA.commonName.toLowerCase() > countryB.commonName.toLowerCase()) ? 1 : 
+                    (countryA.commonName.toLowerCase() < countryB.commonName.toLowerCase()) ? -1 : 
+                    0 
+            )
+            setCountries(sortedTrimmedCountres)
         } else {
             console.error("Problem occured while fetching countries...", response)
         }
@@ -41,7 +46,7 @@ const Countries = () => {
 
     return(
         <CountriesContext.Provider value={countries} >
-            <div style={{ display: "flex"}}>
+            <div className="country-list">
                 {countries.slice(0,5).map(country => (<CountryCard country={country} />))}
             </div>
         </CountriesContext.Provider>

@@ -1,0 +1,33 @@
+.country-card {
+    display: flex;
+    flex-direction: column;
+    height: fit-content; 
+    width: 25%; 
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background: white; 
+    border-radius: 2px;
+    filter: drop-shadow(2px 2px 2px gray);
+}
+
+.country-card .flag-emoji {
+    align-self: center;
+    font-size: 5rem;
+}
+
+.country-card .quick-facts {
+    display: flex;
+    flex-direction: column;
+}
+
+.country-card .quick-facts .name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    align-self: center;
+}
+
+.country-card .quick-facts div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
