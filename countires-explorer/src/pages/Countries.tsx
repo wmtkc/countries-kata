@@ -1,12 +1,16 @@
-import { createContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Country } from "../types/Country"
 import CountryCard from "../components/CountryCard"
 import "../styles/country-page.css"
 
-export const CountriesContext = createContext<Array<Country>>([])
+const PAGE_SIZE = 10
 
 const Countries = () => {
     const [countries, setCountries] = useState<Array<Country>>([])
+    const [currentPage, setCurrentPage] = useState(0)
+
+    const pageUp   = () => setCurrentPage(currentPage === 0 ? 0 : currentPage - 1)
+    const pageDown = () => setCurrentPage(currentPage * PAGE_SIZE > countries.length ? currentPage : currentPage + 1)
 
     const apiDataToCountry = (apiData: any): Country => ({
         borders: apiData.borders,
@@ -45,11 +49,15 @@ const Countries = () => {
     }, [])
 
     return(
-        <CountriesContext.Provider value={countries} >
+        <div className="country-page">
             <div className="country-list">
-                {countries.slice(0,5).map(country => (<CountryCard country={country} />))}
+                {countries.slice(currentPage * 10, (currentPage * 10) + 10).map(country => (<CountryCard country={country} />))}
             </div>
-        </CountriesContext.Provider>
+            <div className="nav-buttons">
+                <button onClick={pageUp}>PREV</button>
+                <button onClick={pageDown}>NEXT</button>
+            </div>
+        </div>
     )
 }
 

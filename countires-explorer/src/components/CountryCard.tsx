@@ -6,9 +6,6 @@ type CountryCardProps = {
 }
 
 const CountryCard = ({ country }: CountryCardProps) => { 
-    const capitalLabel = "Capital" + ((country.capital.length > 1) ? "s" : "") + ":"
-    const capitalText =  country.capital.map(capitalName => (capitalName)).join(", ")
-                    
     return (
         <div className="country-card">
             <div className="flag-emoji">{country.flag}</div>
@@ -22,10 +19,12 @@ const CountryCard = ({ country }: CountryCardProps) => {
                     <span>Region: </span>
                     <span>{country.region}</span>
                 </div>
-                <div>
-                    <span>{capitalLabel}</span>
-                    <span>{capitalText}</span>
-                </div>
+                { country.capital.length > 0 && 
+                    <div>
+                        <span>{"Capital" + ((country.capital.length > 1) ? "s" : "") + ":"}</span>
+                        <span>{country.capital.map(capitalName => (capitalName)).join(", ")}</span>
+                    </div>
+                }
             </div>
         </div>
     )
