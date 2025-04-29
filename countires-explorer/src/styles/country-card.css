@@ -10,6 +10,11 @@
     filter: drop-shadow(2px 2px 2px gray);
 }
 
+.country-card:hover {
+    cursor: pointer;
+    filter: drop-shadow(3px 3px 3px gray);
+}
+
 .country-card .flag-emoji {
     align-self: center;
     font-size: 5rem;
