@@ -13,19 +13,19 @@ const southAfricaCountry: Country = southAfricaData
 describe("Country Card", () => {
     it("renders card with all basic info", () => {
         render(<CountryCard country={botswanaCountry} />)
-        expect(screen.getByText(botswanaCountry.commonName))
         expect(screen.getByText(botswanaCountry.flag))
-        expect(screen.getByText(botswanaCountry.region))
-        expect(screen.getByText(botswanaCountry.capital[0]))
+        expect(screen.getByText(botswanaCountry.commonName))
+        expect(screen.getByText("Population: " + botswanaCountry.population))
+        expect(screen.getByText("Region: " + botswanaCountry.region))
+        expect(screen.getByText("Capital: " + botswanaCountry.capital[0]))
     })
 
     it("displays multiple capitals where relevant", () => {
         render(<CountryCard country={southAfricaCountry} />)
-        expect(screen.getByText(southAfricaCountry.commonName))
         expect(screen.getByText(southAfricaCountry.flag))
-        expect(screen.getByText(southAfricaCountry.region))
-        southAfricaCountry.capital.forEach(capital => {
-            expect(screen.getByText(capital))
-        })
+        expect(screen.getByText(southAfricaCountry.commonName))
+        expect(screen.getByText("Population: " + southAfricaCountry.population))
+        expect(screen.getByText("Region: " + southAfricaCountry.region))
+        expect(screen.getByText("Capitals:" + southAfricaCountry.capital.map(capitalName => (" " + capitalName))))
     })
 })

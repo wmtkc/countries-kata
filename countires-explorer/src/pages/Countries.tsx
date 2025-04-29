@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import Greeting from "../components/Greeting"
 import { Country } from "../types/Country"
+import CountryCard from "../components/CountryCard"
 
 export const CountriesContext = createContext<Array<Country>>([])
 
@@ -40,7 +41,9 @@ const Countries = () => {
 
     return(
         <CountriesContext.Provider value={countries} >
-            <Greeting name="Dev" />
+            <div style={{ display: "flex"}}>
+                {countries.slice(0,5).map(country => (<CountryCard country={country} />))}
+            </div>
         </CountriesContext.Provider>
     )
 }
